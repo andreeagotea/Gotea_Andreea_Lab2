@@ -82,23 +82,23 @@
         <Button x:Name="btnAddToSale" Content="Add To Sale" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="116" Grid.Column="6" Margin="68,25,0,0" Grid.Row="5" Click="Button_Click" Grid.ColumnSpan="3"/>
         <Button x:Name="btnRemoveItem" Content="Remove Item" HorizontalAlignment="Left" Width="116" Grid.Column="6" Margin="69,54,0,109" Grid.Row="5" Click="btnRemoveItem_Click" Grid.ColumnSpan="3"/>
         <Button x:Name="btnCheckOut" Content="Check Out" HorizontalAlignment="Left" Height="31" VerticalAlignment="Top" Width="124" Grid.Column="6" Margin="70,124,0,0" Grid.Row="5" Click="Button_Click_1" FontWeight="Bold" Grid.ColumnSpan="3"/>
-        <Menu x:Name="mnuMain" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top"
-Width="131" Margin="60,2,0,0" Grid.ColumnSpan="4" Grid.Row="1">
-            <MenuItem Header="File">
-                <MenuItem Header="Exit"/>
-            </MenuItem>
-            <MenuItem Header="_Doughnuts">
-                <MenuItem Header="Make">
-                    
-                    
-                        <MenuItem Header="Raised">
-                        <MenuItem x:Name="glazedMenuItem" Header="Glazed"/>
-                        <MenuItem x:Name="sugarMenuItem" Header="Sugar"/>
-                    </MenuItem>
-                    <MenuItem Header="Filled"/>
-                </MenuItem>
-                <MenuItem Header="Stop"/>
-            </MenuItem>
-        </Menu>
+        <Menu x:Name="mnuMain" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top"
+Width="230">
+ <MenuItem Header="File">
+ <MenuItem Header="Exit" Click="exitToolStripMenuItem_Click"/>
+ </MenuItem>
+ <MenuItem Header="_Doughnuts">
+<MenuItem Header="Make">
+ <MenuItem Header="Raised">
+ <MenuItem x:Name="glazedToolStripMenuItem" Header="Glazed"
+Click="glazedToolStripMenuItem_Click" IsCheckable="True"/>
+ <MenuItem x:Name="sugarToolStripMenuItem" Header="Sugar"
+IsCheckable="True" Click="sugarToolStripMenuItem_Click"/>
+ </MenuItem>
+ <MenuItem Header="Filled"/>
+ </MenuItem>
+ <MenuItem x:Name="mnuStop" Header="Stop"/>
+</MenuItem>
+ </Menu>
     </Grid>
 </Window>

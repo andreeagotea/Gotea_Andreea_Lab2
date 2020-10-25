@@ -18,71 +18,95 @@ namespace Gotea_Andreea_Lab2
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
         }
+        private void frmMain_Loaded(object sender, RoutedEventArgs e)
+        {
+            myDoughnutMachine = new DoughnutMachine();
+        }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private DoughnutMachine myDoughnutMachine;
+        private int mRaisedGlazed;
+        private int mRaisedSugar;
+        private int mFilledLemon;
+        private int mFilledChocolate;
+        private int mFilledVanilla;
+        private object txtSugarRaised;
+
+        private void cmbType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+        private void glazedToolStripMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            glazedToolStripMenuItem.IsChecked = true;
+            sugarToolStripMenuItem.IsChecked = false;
+            myDoughnutMachine.MakeDoughnuts(DoughnutType.Glazed);
+        }
+        private void sugarToolStripMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            glazedToolStripMenuItem.IsChecked = false;
+            sugarToolStripMenuItem.IsChecked = true;
+            myDoughnutMachine.MakeDoughnuts(DoughnutType.Sugar);
+
+        }
+        private void DoughnutCompleteHandler()
+        {
+            switch (myDoughnutMachine.Flavor)
+            {
+                case DoughnutType.Glazed:
+                    mRaisedGlazed++;
+                    txtGlazedRaised.Text = mRaisedGlazed.ToString();
+                    break;
+
+                case DoughnutType.Sugar:
+                    mRaisedSugar++;
+                    txtSugarRaised.Text = mRaisedSugar.ToString();
+                    break;
+                    //...
+            }
+        }
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            myDoughnutMachine.DoughnutComplete += new
+DoughnutMachine.DoughnutCompleteDelegate(DoughnutCompleteHandler);
+        }
+
+
+        private void StopToolStripMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            myDoughnutMachine.Enabled = false;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void TextBox_TextChanged_2(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void txtLemonFilled_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void TextBox_TextChanged_3(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void TextBox_TextChanged_4(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void lstSale_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void txtVanillaFilled_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnRemoveItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void mnuStop_Click(object sender, RoutedEventArgs e)
         {
 
         }
     }
+    private void exitToolStripMenuItem_Click(object sender, RoutedEventArgs e)
+    {
+        this.Close();
+    }
+    private void txtQuantity_KeyPress(object sender, KeyEventArgs e)
+    {
+        if (!(e.Key >= Key.D0 && e.Key <= Key.D9))
+        {
+            MessageBox.Show("Numai cifre se pot introduce!", "Input Error", MessageBoxButton.OK,
+           MessageBoxImage.Error);
+        }
+    }
+
+
+
+
 }
